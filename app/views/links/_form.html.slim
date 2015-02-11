@@ -1,0 +1,15 @@
+= form_for (@link) do |f|
+
+  - if @link.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@link.errors.count, "error")
+        |  prohibited this link from being saved:
+      - @link.errors.full_messages.each do |msg|
+        li  = msg
+
+
+  = f.label :enter_your_link_here
+  = f.text_field :long
+
+  = f.submit "Convert"
