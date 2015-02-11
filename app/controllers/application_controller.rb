@@ -5,7 +5,9 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_short_link
     short_link = request.env['PATH_INFO'].delete!("/")
-    result = Link.find_by_short(short_link).long
-    redirect_to "#{result}"
+    result = Link.find_by_short(short_link)
+    
+    result ? (redirect_to "#{result.long}") : (redirect_to root_path)
+    
   end
 end
